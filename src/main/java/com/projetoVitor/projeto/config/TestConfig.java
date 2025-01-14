@@ -1,8 +1,10 @@
 package com.projetoVitor.projeto.config;
 
+import com.projetoVitor.projeto.entities.Category;
 import com.projetoVitor.projeto.entities.Order;
 import com.projetoVitor.projeto.entities.User;
 import com.projetoVitor.projeto.entities.enums.OrderStatus;
+import com.projetoVitor.projeto.repositories.CategoryRepository;
 import com.projetoVitor.projeto.repositories.OrderRepository;
 import com.projetoVitor.projeto.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @Configuration
@@ -22,8 +25,18 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         User u1 = new User("maria", "maria123@gmail.com", "87643833", "12345");
         User u2 = new User("zezin", "zezin123@gmail.com", "99643833", "12785");
 
