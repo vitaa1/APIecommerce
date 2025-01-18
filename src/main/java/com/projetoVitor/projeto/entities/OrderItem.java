@@ -1,5 +1,6 @@
 package com.projetoVitor.projeto.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetoVitor.projeto.entities.pk.OrderItemPk;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -14,19 +15,21 @@ public class OrderItem implements Serializable {
 
 
     @EmbeddedId
-    private final OrderItemPk id;
+    private OrderItemPk id = new OrderItemPk();
 
     private Integer quantity;
     private Double price;
 
+    public OrderItem() {
+    }
     public OrderItem(Order order, Product product, Integer quantity, Double price) {
-        this.id = new OrderItemPk();
         id.setOrder(order);
         id.setProduct(product);
         this.quantity = quantity;
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
@@ -40,6 +43,22 @@ public class OrderItem implements Serializable {
 
     public void setProduct(Product product) {
         id.setProduct(product);
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
