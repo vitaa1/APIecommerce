@@ -1,7 +1,6 @@
 package com.projetoVitor.projeto.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetoVitor.projeto.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
@@ -87,6 +86,14 @@ public class Order implements Serializable {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public Double getTotal() {
+        double som = 0.0;
+        for (OrderItem x : items) {
+             som+= x.getSubTotal();
+        }
+        return som;
     }
 
     @Override
