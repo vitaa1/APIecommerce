@@ -23,4 +23,8 @@ public class UserService {
                 .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
     }
 
+    public User insert(User obj) {
+        return repository.save(obj);
+    }
+
 }
