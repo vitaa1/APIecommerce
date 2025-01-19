@@ -2,6 +2,7 @@ package com.projetoVitor.projeto.service;
 
 import com.projetoVitor.projeto.entities.User;
 import com.projetoVitor.projeto.repositories.UserRepository;
+import com.projetoVitor.projeto.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj) {
