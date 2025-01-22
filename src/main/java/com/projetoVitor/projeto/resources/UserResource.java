@@ -3,6 +3,7 @@ package com.projetoVitor.projeto.resources;
 import com.projetoVitor.projeto.entities.User;
 import com.projetoVitor.projeto.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -47,6 +48,5 @@ public class UserResource {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-
 
 }
